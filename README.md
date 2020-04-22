@@ -23,7 +23,7 @@ Audiothemes react relatively slowly.
 	- Main Repo: https://github.com/camlorn/Unspoken
 	- Developer's GitHub profile: https://github.com/camlorn
 	- Non-license
-	* Audiothemes
+* Audiothemes
 	- Main Repo: https://github.com/mush42/Audio-Themes-NVDA-Add-on
 	- Developer's GitHub profile: https://github.com/mush42/
 	- Non-license
