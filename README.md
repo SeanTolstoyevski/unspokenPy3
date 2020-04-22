@@ -59,7 +59,7 @@ I searched and couldn't find it.
 Feel free to create a PR for the problem.
 A very simple problem for experienced NVDA developers 🤗.
 
-	```
+```
 WARNING - eventHandler._EventExecuter.next (21:56:30.419) - MainThread (2404):
 Could not execute function event_becomeNavigatorObject defined in globalPlugins.Unspoken module; kwargs: {'isFocus': True}
 Traceback (most recent call last):
