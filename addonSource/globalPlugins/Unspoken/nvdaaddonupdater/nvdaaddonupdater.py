@@ -1,16 +1,6 @@
-# Automatically update an NVDA add on.
-# By Bryan Smart (bryansmart@bryansmart.com)
-
-import os
-import threading
-import urllib
-import tempfile
-
-import gui
-
-import wx
-
-from callafter import *
+import os, threading, tempfile, gui, wx
+import urllib.request, urllib.parse, urllib.error
+from .callafter import *
 
 class NVDAAddOnUpdater (object):
 
@@ -26,7 +16,7 @@ class NVDAAddOnUpdater (object):
 	def check_update(self):
 		# Retrieve current version number.
 		try:
-			f = urllib.urlopen(self._update_url + '/version')
+			f = urllib.request.urlopen(self._update_url + '/version')
 		except:
 			# If Internet unavailable, silently fail.
 			return
@@ -55,7 +45,7 @@ class NVDAAddOnUpdater (object):
 	def force_update(self):
 		# Open connection to download update.
 		try:
-			remote_file = urllib.urlopen(self._update_url + '/install')
+			remote_file = urllib.request.urlopen(self._update_url + '/install')
 		except:
 			gui.messageBox("Unable to connect to update server!", style=wx.ICON_ERROR)
 			return

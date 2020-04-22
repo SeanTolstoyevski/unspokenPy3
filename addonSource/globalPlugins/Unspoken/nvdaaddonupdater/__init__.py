@@ -1,1 +1,1 @@
-from nvdaaddonupdater import *
+from .nvdaaddonupdater import *

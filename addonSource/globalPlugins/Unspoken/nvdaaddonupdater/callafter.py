@@ -9,7 +9,7 @@ def call_after_and_block(func, *args, **kwargs):
  def wrapper():
   try:
    event.result = func(*args, **kwargs)
-  except Exception, e:
+  except Exception as e:
    event.exception = e
   finally:
    event.set()

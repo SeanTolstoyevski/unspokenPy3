@@ -1,8 +1,3 @@
-# -*- coding: UTF-8 -*-
-
-# docHandler: module for managing addons documentation
-# See: http://community.nvda-project.org/ticket/2694
-
 import os
 import languageHandler
 import addonHandler
@@ -55,7 +50,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def __init__(self):
 		super(globalPluginHandler.GlobalPlugin, self).__init__()
 		self.help = gui.mainFrame.sysTrayIcon.helpMenu
-		self.helpItem = self.help.Append(wx.ID_ANY, u"{summary} {version}".format(summary=_addonSummary, version=_addonVersion), _addonName)
+		self.helpItem = self.help.Append(wx.ID_ANY, "{summary} {version}".format(summary=_addonSummary, version=_addonVersion), _addonName)
 		gui.mainFrame.sysTrayIcon.Bind(wx.EVT_MENU, self.onHelp, self.helpItem)
 
 	def onHelp(self, evt):
