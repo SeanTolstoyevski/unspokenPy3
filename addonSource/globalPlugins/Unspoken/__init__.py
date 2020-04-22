@@ -115,7 +115,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			sounds[role].set_position(position_x, position_y, AUDIO_DEPTH * -1)
 			sounds[role].play()
 
-	def event_becomeNavigatorObject(self, obj, nextHandler):
+	def event_gainFocus(self, obj, nextHandler):
+		self.play_object(obj)
+		nextHandler()
+
+	def event_becomeNavigatorObject(self, obj, nextHandler, isFocus=False):
 		self.play_object(obj)
 		nextHandler()
 

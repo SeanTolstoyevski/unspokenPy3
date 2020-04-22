@@ -63,6 +63,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	def terminate(self):
 		try:
-			self.help.RemoveItem(self.helpItem)
+			self.help.Remove(self.helpItem)
 		except wx.PyDeadObjectError:
 			pass
