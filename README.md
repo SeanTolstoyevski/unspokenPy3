@@ -55,11 +55,13 @@ or download it from the GitHub page.
 
 ## Issues that need help
 
-I searched and couldn't find it.
-Feel free to create a PR for the problem.
+I searched and couldn't find it.  
+Feel free to create a PR for the problem.  
 A very simple problem for experienced NVDA developers 🤗.
 
-Fixed ❤
+1. Press NVDA+ctrl+f3  
+after, the add-on don't run.
+2. Fixed ❤
 ```
 WARNING - eventHandler._EventExecuter.next (21:56:30.419) - MainThread (2404):
 Could not execute function event_becomeNavigatorObject defined in globalPlugins.Unspoken module; kwargs: {'isFocus': True}
@@ -70,7 +72,7 @@ TypeError: event_becomeNavigatorObject() got an unexpected keyword argument 'isF
 
 ## License
 
-This repo is licensed under the MIT License.
+This repo is licensed under the MIT License.  
 Components created by other developers may have a other license.
 - [MIT Lıcense](https://github.com/SeanTolstoyevski/unspokenPy3/blob/master/LICENSE)
 - ...
