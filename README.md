@@ -46,7 +46,7 @@ If you are not a developer, I wouldn't recommend running the plugin in beta.
 ## Steps for Use or test or developing
 
 1. Clone this repo to test or use the plugin:  
-`git clone https://github.com/SeanTolstoyevski/unspokenPy3`
+`git clone https://github.com/SeanTolstoyevski/unspokenPy3`  
 or download it from the GitHub page.
 2. Copy the addon folder in the repo folder to the appdata/roaming/nvda / addon folder.  
 **NVDA's steps for your own configuration are not here.**
