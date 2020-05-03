@@ -82,3 +82,6 @@ dmypy.json
 .pyre/
 .sconsign.dblite
 *.html
+msgfmt.exe
+xgettext.exe
+unspokenPy3-0.3.nvda-addon

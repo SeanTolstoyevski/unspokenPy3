@@ -36,22 +36,9 @@ NVDA without it is bad 😢 .
 I wanted to open the source code to everyone.  
 Please respect the great effort of the Unspoken main developer.
 
-## Addon Status
-* Beta
-
 **Note**:
 
 If you are not a developer, I wouldn't recommend running the add-on in beta.
-
-## Steps for Use or test or developing
-
-1. Clone this repo to test or use the add-on:  
-`git clone https://github.com/SeanTolstoyevski/unspokenPy3`  
-or download it from the GitHub page.
-2. Copy the addon folder in the repo folder to the appdata/roaming/nvda / addon folder.  
-**NVDA's steps for your own configuration are not here.**
-3. and change the folder name to "unspoken".
-4. Restart NVDA.
 
 ## Issues that need help
 

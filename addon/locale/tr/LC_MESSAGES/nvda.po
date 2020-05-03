@@ -1,0 +1,46 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 'unspokenPy3' '0.3'\n"
+"Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
+"POT-Creation-Date: 2020-05-03 21:59+0300\n"
+"PO-Revision-Date: 2020-05-03 22:03+0300\n"
+"Language-Team: Sean <s.tolstoyevski@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: tr_TR\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: buildVars.py:9
+msgid "Unspoken"
+msgstr "Sözsüz"
+
+#: buildVars.py:10
+msgid ""
+"Removes names like unspoken, link, button. It plays different sounds instead "
+"of informations."
+msgstr ""
+"Sözsüz, bağlantı, düğme gibi adları kaldırır. Bilgiler yerine farklı sesler "
+"çalar."
+
+#. Translators: the label of a message box dialog.
+#: addon\installTasks.py:14
+msgid ""
+"You have installed an old and incompatible version of this addon. Do you "
+"want to uninstall the old version?"
+msgstr ""
+"Bu eklentinin eski ve uyumsuz bir sürümü kurulu. Eski sürümü kaldırmak "
+"istiyor musunuz?"
+
+#. Translators: the title of a message box dialog.
+#: addon\installTasks.py:16
+msgid "Uninstall incompatible add-on"
+msgstr "Uyumsuz Eklenti: Kaldır "
