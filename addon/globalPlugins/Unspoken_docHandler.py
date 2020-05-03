@@ -5,11 +5,10 @@ import globalPluginHandler
 import gui
 import wx
 
-addonHandler.initTranslation()
 
-_addonDir = os.path.join(os.path.dirname(__file__), "..") # The root of an addon folder
+_addonDir = os.path.join(os.path.dirname(__file__), "..")
 _docFileName = "readme.html" # The name of an addon documentation file
-_curAddon = addonHandler.Addon(_addonDir) # Addon instance
+_curAddon = addonHandler.Addon(_addonDir)
 _addonSummary = _curAddon.manifest['summary']
 _addonVersion = _curAddon.manifest['version']
 _addonName = _curAddon.manifest['name']

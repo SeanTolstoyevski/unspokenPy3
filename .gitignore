@@ -80,3 +80,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+.sconsign.dblite
+*.html
