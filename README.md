@@ -1,4 +1,19 @@
-# unspokenPy3
+# unspoken (Ported python 3)
+
+- author: SeanTolstoyevski
+- Download: xxxxx
+
+## description
+Unspoken deletes the **name label  of objects**. Different sounds are played instead of these names.
+Example: "more button", active Unspoken: "more (a unique sound)"
+This add-on can help you use your computer dynamic/faster.
+
+## FEATURES:
+
+- (default) **ctrl+shift+u**: Activates / deactivates Unspoken. You can use profiles to disable Unspoken in some applications.
+(See: NVDA Menu>Input gestures...>Unspoken>... and NVDA Menu>Configuration profiles...)
+You can assign a different key here And you can create profiles for apps.
+**Note**: this is a new feature. Testing on more machines may be required. Please consider creating Issue. ( added Date: 31 Aug 2020)
 
 ## A few very important note!
 
@@ -6,15 +21,15 @@
 
 ***
 
-This add-on was running before the 2019.3 releases of NVDA.  
+This add-on was running before the 2019.3 releases of NVDA.
 Developer was not developing the addon.
 
-Afterwards, a Sudanese friend named Musharraf Omer built a new add-on by building the Audiothemes addon on Unspoken.  
-Audiothemes have several problems.  
+Afterwards, a Sudanese friend named Musharraf Omer built a new add-on by building the Audiothemes addon on Unspoken.
+Audiothemes have several problems.
 For example, some sounds crack.
 
-Most of Unspoken is written in C.  
-So it works faster and more stable against pure Python code.  
+Most of Unspoken is written in C.
+So it works faster and more stable against pure Python code.
 Audiothemes react relatively slowly.
 
 **All sources mentioned here**:
@@ -30,24 +45,20 @@ Audiothemes react relatively slowly.
 
 ***
 
-I don't want to do  hurt the author of the add-on.  
-Unspoken is a very important add-on for me.  
-NVDA without it is bad 😢 .  
-I wanted to open the source code to everyone.  
+I don't want to do  hurt the author of the add-on.
+Unspoken is a very important add-on for me.
+NVDA without it is bad 😢 .
+I wanted to open the source code to everyone.
 Please respect the great effort of the Unspoken main developer.
 
-**Note**:
+## Issues that need help and Desired features
+### ISSUES:
+* Press NVDA+ctrl+f3  
+	- after, the add-on don't run.
 
-If you are not a developer, I wouldn't recommend running the add-on in beta.
-
-## Issues that need help
-
-I searched and couldn't find it.  
-Feel free to create a PR for the problem.  
-A very simple problem for experienced NVDA developers 🤗.
-
-1. Press NVDA+ctrl+f3  
-after, the add-on don't run.
+### Desired features:
+* Themes
+	- Users want to be able to switch between themes and customize sounds. Unfortunately, I don't have much time for this as I am interested in other projects. If you are a developer with plenty of time, you can create a PR for this feature.
 
 ## License
 

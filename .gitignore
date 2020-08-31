@@ -85,3 +85,4 @@ dmypy.json
 msgfmt.exe
 xgettext.exe
 unspokenPy3-0.3.nvda-addon
+*.nvda-addon

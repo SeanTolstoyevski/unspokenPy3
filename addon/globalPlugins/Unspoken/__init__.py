@@ -1,12 +1,8 @@
 import os
-import sys
-import globalPluginHandler
-import NVDAObjects
-import config
-import speech
-import controlTypes
+# : NVDA's modules
+import NVDAObjects, config, globalPluginHandler, speech, ui, controlTypes
+# : 3rd party module
 from .camlorn_audio import *
-
 
 AUDIO_WIDTH = 10.0 # Width of the audio display.
 AUDIO_DEPTH = 5.0 # Distance of listener from display.
@@ -14,7 +10,7 @@ AUDIO_DEPTH = 5.0 # Distance of listener from display.
 UNSPOKEN_ROOT_PATH = os.path.abspath(os.path.dirname(__file__))
 UNSPOKEN_SOUNDS_PATH = os.path.join(UNSPOKEN_ROOT_PATH, "sounds")
 
-sound_files={
+sound_files = {
 controlTypes.ROLE_CHECKBOX : "checkbox.wav",
 controlTypes.ROLE_RADIOBUTTON : "radiobutton.wav",
 controlTypes.ROLE_STATICTEXT : "editabletext.wav",
@@ -59,18 +55,21 @@ controlTypes.ROLE_SPLITBUTTON : "splitbutton.wav",
 
 sounds = dict()
 
+confspec = {
+	"active": "boolean(default=true)"
+}
+
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
+	scriptCategory = _("Unspoken")
 
 	def __init__(self, *args, **kwargs):
 		globalPluginHandler.GlobalPlugin.__init__(self, *args, **kwargs)
+		config.conf.spec["unspokenpy3"] = confspec
 
 		init_camlorn_audio()
-
 		for key in sound_files:
 			sounds[key] = Sound3D(os.path.join(UNSPOKEN_SOUNDS_PATH, sound_files[key]))
 			sounds[key].set_rolloff_factor(0)
-			if sounds[key].get_length() <= 0: pass
-			else: pass
 		self._room_reverb = Reverb()
 		self._room_reverb.set_reverb_density(0)
 		self._room_reverb.set_Decay_time(0.4)
@@ -87,26 +86,27 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def _hook_getSpeechTextForProperties(self, reason=NVDAObjects.controlTypes.REASON_QUERY, *args, **kwargs):
 		role = kwargs.get('role', None)
 		if role:
-			if 'role' in kwargs and role in sounds:
+			if config.conf["unspokenpy3"]["active"] and \
+				'role' in kwargs and role in sounds:
 				del kwargs['role']
 		return self._NVDA_getSpeechTextForProperties(reason, *args, **kwargs)
+
+	def controlPlayer(self):
+		if self.activeVar == True:
+			self.play_object(self)
 
 	def play_object(self, obj):
 		global AUDIO_WIDTH, AUDIO_DEPTH
 		role = obj.role
 		if role in sounds:
-			# Get coordinate bounds of desktop.
 			desktop = NVDAObjects.api.getDesktopObject()
 			desktop_max_x = desktop.location[2]
 			desktop_max_y = desktop.location[3]
 			desktop_aspect = float(desktop_max_y) / float(desktop_max_x)
-			# Get location of the object.
 			if obj.location != None:
-				# Object has a location. Get its center.
 				obj_x = obj.location[0] + (obj.location[2] / 2.0)
 				obj_y = obj.location[1] + (obj.location[3] / 2.0)
 			else:
-				# Objects without location are assumed in the center of the screen.
 				obj_x = desktop_max_x / 2.0
 				obj_y = desktop_max_y / 2.0
 			position_x = (obj_x / desktop_max_x) * (AUDIO_WIDTH * 2) - AUDIO_WIDTH
@@ -115,14 +115,31 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			sounds[role].set_position(position_x, position_y, AUDIO_DEPTH * -1)
 			sounds[role].play()
 
-
 	def event_becomeNavigatorObject(self, obj, nextHandler, isFocus=False):
-		self.play_object(obj)
+		if config.conf["unspokenpy3"]["active"]:
+			self.play_object(obj)
+		else: pass
 		nextHandler()
 
 	def event_mouseMove(self, obj, nextHandler, x, y):
 		if obj != self._previous_mouse_object:
 			self._previous_mouse_object = obj
-			self.play_object(obj)
+			if config.conf["unspokenpy3"]["active"]:
+				self.play_object(obj)
 		nextHandler()
 
+	def script_changeActivate(self, gesture):
+		if config.conf["unspokenpy3"]["active"]:
+			speech.cancelSpeech()
+			ui.message(_("Disable Unspoken"))
+			config.conf["unspokenpy3"]["active"] = False
+		elif  config.conf["unspokenpy3"]["active"] == False:
+			speech.cancelSpeech()
+			ui.message(_("Enable Unspoken"))
+			config.conf["unspokenpy3"]["active"] = True
+		else: pass
+
+	script_changeActivate.__doc__ = _("Changes the active  / deactive  mode of Unspoken.")
+	__gestures = {
+		"kb:control+shift+u": "changeActivate",
+		}
