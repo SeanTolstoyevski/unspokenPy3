@@ -4,32 +4,32 @@
 - Download: xxxxx
 
 ## description
-Unspoken deletes the **name label  of objects**. Different sounds are played instead of these names.
-Example: "more button", active Unspoken: "more (a unique sound)"
+Unspoken deletes the **name label  of objects**. Different sounds are played instead of these names.  
+Example: "more button", active Unspoken: "more (a unique sound)"  
 This add-on can help you use your computer dynamic/faster.
 
 ## FEATURES:
 
 - (default) **ctrl+shift+u**: Activates / deactivates Unspoken. You can use profiles to disable Unspoken in some applications.
-(See: NVDA Menu>Input gestures...>Unspoken>... and NVDA Menu>Configuration profiles...)
-You can assign a different key here And you can create profiles for apps.
+
+(See: NVDA Menu>Input gestures...>Unspoken>... and NVDA Menu>Configuration profiles...)  
+You can assign a different key here And you can create profiles for apps.  
 **Note**: this is a new feature. Testing on more machines may be required. Please consider creating Issue. ( added Date: 31 Aug 2020)
 
 ## A few very important note!
-
 **I am not the main developer of the addon.**
 
 ***
 
-This add-on was running before the 2019.3 releases of NVDA.
+This add-on was running before the 2019.3 releases of NVDA.  
 Developer was not developing the addon.
 
-Afterwards, a Sudanese friend named Musharraf Omer built a new add-on by building the Audiothemes addon on Unspoken.
-Audiothemes have several problems.
+Afterwards, a Sudanese friend named Musharraf Omer built a new add-on by building the Audiothemes addon on Unspoken.  
+Audiothemes have several problems.  
 For example, some sounds crack.
 
-Most of Unspoken is written in C.
-So it works faster and more stable against pure Python code.
+Most of Unspoken is written in C.  
+So it works faster and more stable against pure Python code.  
 Audiothemes react relatively slowly.
 
 **All sources mentioned here**:
@@ -43,13 +43,6 @@ Audiothemes react relatively slowly.
 	- Developer's GitHub profile: https://github.com/mush42/
 	- Non-license
 
-***
-
-I don't want to do  hurt the author of the add-on.
-Unspoken is a very important add-on for me.
-NVDA without it is bad 😢 .
-I wanted to open the source code to everyone.
-Please respect the great effort of the Unspoken main developer.
 
 ## Issues that need help and Desired features
 ### ISSUES:
@@ -65,4 +58,3 @@ Please respect the great effort of the Unspoken main developer.
 This repo is licensed under the MIT License.  
 Components created by other developers may have a other license.
 - [MIT Lıcense](https://github.com/SeanTolstoyevski/unspokenPy3/blob/master/LICENSE)
-- ...

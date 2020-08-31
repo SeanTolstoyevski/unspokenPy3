@@ -1,6 +1,11 @@
+# -*- coding: utf-8 -*-
+# Copyright (C) 2020 - Sean: mailto:s.tostoyevski@gmail.com
+# GitHub: https://github.com/SeanTolstoyevski
+# This project is licensed under the MIT license. You are free to do whatever you want as long as you accept your liability.
+
 import os
 # : NVDA's modules
-import NVDAObjects, config, globalPluginHandler, speech, ui, controlTypes
+import addonHandler, config, controlTypes, globalPluginHandler,  NVDAObjects, speech, ui
 # : 3rd party module
 from .camlorn_audio import *
 
@@ -59,6 +64,7 @@ confspec = {
 	"active": "boolean(default=true)"
 }
 
+addonHandler.initTranslation()
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	scriptCategory = _("Unspoken")
 

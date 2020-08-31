@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 'unspokenPy3' '0.4'\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2020-08-31 05:09+0300\n"
+"POT-Creation-Date: 2020-08-31 04:49+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,19 +17,19 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: addon\globalPlugins\Unspoken\__init__.py:69 buildVars.py:9
+#: addon\globalPlugins\Unspoken\__init__.py:63 buildVars.py:9
 msgid "Unspoken"
 msgstr ""
 
-#: addon\globalPlugins\Unspoken\__init__.py:140
+#: addon\globalPlugins\Unspoken\__init__.py:134
 msgid "Disable Unspoken"
 msgstr ""
 
-#: addon\globalPlugins\Unspoken\__init__.py:144
+#: addon\globalPlugins\Unspoken\__init__.py:138
 msgid "Enable Unspoken"
 msgstr ""
 
-#: addon\globalPlugins\Unspoken\__init__.py:148
+#: addon\globalPlugins\Unspoken\__init__.py:142
 msgid "Changes the active  / deactive  mode of Unspoken."
 msgstr ""
 
