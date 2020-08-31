@@ -114,3 +114,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
     __gestures = {
         "kb:control+shift+u": "changeActivate",
     }
+
+    def terminate(self, *args, **kwargs):
+        super().terminate(*args, **kwargs)
+        gui.settingsDialogs.NVDASettingsDialog.categoryClasses.remove(UnspokenSettingsPanel)
