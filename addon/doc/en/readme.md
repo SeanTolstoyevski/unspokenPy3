@@ -1,7 +1,7 @@
 # unspoken (Ported python 3)
 
-- author: SeanTolstoyevski
-- Download: xxxxx
+- author: [SeanTolstoyevski](https://github.com/SeanTolstoyevski/)
+- Download: [github.com/SeanTolstoyevski/unspokenPy3/releases](https://github.com/SeanTolstoyevski/unspokenPy3/releases)
 
 ## description
 Unspoken deletes the **name label  of objects**. Different sounds are played instead of these names.  
