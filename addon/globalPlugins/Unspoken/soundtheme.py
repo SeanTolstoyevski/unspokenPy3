@@ -56,6 +56,10 @@ def loadSoundTheme(soundTheme):
 		sounds[key] = Sound3D(os.path.join(UNSPOKEN_SOUNDS_PATH, soundTheme,  sound_files[key]))
 		sounds[key].set_rolloff_factor(0)
 
+def deleteSoundTheme (soundTheme):
+	import shutil 
+	shutil.rmtree(os.path.join (UNSPOKEN_SOUNDS_PATH, soundTheme))
+
 
 def getAvailableSoundThemes():
 	soundThemes = []

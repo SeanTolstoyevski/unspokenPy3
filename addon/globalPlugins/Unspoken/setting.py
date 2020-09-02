@@ -18,10 +18,12 @@ class UnspokenSettingsPanel(gui.SettingsPanel):
 		self.soundThemeSelector.SetSelection(self.soundThemes.index(curSoundTheme))
 		self.importBtn = wx.Button(self, wx.ID_ANY, "import sound theme")
 		self.Bind(wx.EVT_BUTTON, self.onImportTheme,  self.importBtn)
+		self.deleteBtn = wx.Button(self, wx.ID_ANY, "delete sound theme")
+		self.Bind (wx.EVT_BUTTON, self.onDeleteTheme, self.deleteBtn)
+
 
 	def onSave(self):
-		selSoundThemeIndex = self.soundThemeSelector.GetCurrentSelection()
-		selSoundTheme = self.soundThemes[selSoundThemeIndex]
+		selSoundTheme = self.soundThemeSelector.GetStringSelection()
 		config.conf["unspokenpy3"]["soundtheme"] = selSoundTheme
 		log.info("sound theme: " + config.conf["unspokenpy3"]["soundtheme"])
 		loadSoundTheme(selSoundTheme)
@@ -37,9 +39,18 @@ class UnspokenSettingsPanel(gui.SettingsPanel):
 		dlg.Destroy()
 		self.importTheme(importSoundThemePath)
 		self.soundThemes = getAvailableSoundThemes()
-		self.soundThemeSelector.Set(self.soundThemes)
+		self.soundThemeSelector.SetItems(self.soundThemes)
+		self.soundThemeSelector.SetSelection(self.soundThemeSelector.Count-1)
 
 	def importTheme(self, path):
 		soundThemeFile = ZipFile(path)
 		os.chdir(UNSPOKEN_SOUNDS_PATH)
 		soundThemeFile.extractall()
+
+	def onDeleteTheme (self, evt):
+		log.info("deleting sound theme: " + self.soundThemeSelector.GetStringSelection())
+		deleteSoundTheme(self.soundThemeSelector.GetStringSelection())
+		self.soundThemeSelector.SetItems(getAvailableSoundThemes())
+		self.soundThemeSelector.SetSelection(self.soundThemeSelector.Count -1)
+		config.conf["unspokenpy3"]["soundtheme"] = self.soundThemeSelector.GetStringSelection()
+
