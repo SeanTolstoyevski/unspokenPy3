@@ -11,7 +11,7 @@ class UnspokenSettingsPanel(gui.SettingsPanel):
 	title = _(' unspoken  setting')
 
 	def makeSettings(self, settingsSizer):
-		curSoundTheme = config.conf.spec["unspokenpy3"]["soundtheme"]
+		curSoundTheme = config.conf["unspokenpy3"]["soundtheme"]
 		self.soundThemes = getAvailableSoundThemes()
 		self.soundSelectorLbl = wx.StaticText(self, wx.ID_ANY, "sound theme")
 		self.soundThemeSelector = wx.Choice(self, wx.ID_ANY, choices=self.soundThemes)
@@ -22,8 +22,8 @@ class UnspokenSettingsPanel(gui.SettingsPanel):
 	def onSave(self):
 		selSoundThemeIndex = self.soundThemeSelector.GetCurrentSelection()
 		selSoundTheme = self.soundThemes[selSoundThemeIndex]
-		config.conf.spec["unspokenpy3"]["soundtheme"] = selSoundTheme
-		log.info("sound theme: " + config.conf.spec["unspokenpy3"]["soundtheme"])
+		config.conf["unspokenpy3"]["soundtheme"] = selSoundTheme
+		log.info("sound theme: " + config.conf["unspokenpy3"]["soundtheme"])
 		loadSoundTheme(selSoundTheme)
 
 	def onImportTheme(self, evt):

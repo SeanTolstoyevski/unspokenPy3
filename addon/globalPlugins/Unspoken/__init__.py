@@ -23,7 +23,7 @@ AUDIO_DEPTH = 5.0  # Distance of listener from display.
 
 confspec = {
 	"active": "boolean(default=true)",
-	"soundtheme": "default theme"
+	"soundtheme": "string(default='default theme')"
 }
 
 addonHandler.initTranslation()
@@ -40,7 +40,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		config.conf.spec["unspokenpy3"] = confspec
 
 		init_camlorn_audio()
-		loadSoundTheme(config.conf.spec["unspokenpy3"]["soundtheme"])
+		loadSoundTheme(config.conf["unspokenpy3"]["soundtheme"])
 		self._room_reverb = Reverb()
 		self._room_reverb.set_reverb_density(0)
 		self._room_reverb.set_Decay_time(0.4)
