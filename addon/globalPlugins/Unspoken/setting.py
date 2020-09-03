@@ -26,11 +26,11 @@ class UnspokenSettingDialog(gui.SettingsDialog):
 		self.deleteBtn = wx.Button(self, wx.ID_ANY, "delete sound theme")
 		self.Bind(wx.EVT_BUTTON, self.onDeleteTheme, self.deleteBtn)
 
-	def onSave(self):
+	def onOk(self, evt):
 		selSoundTheme = self.soundThemeSelector.GetStringSelection()
 		config.conf["unspokenpy3"]["soundtheme"] = selSoundTheme
 		log.info("sound theme: " + config.conf["unspokenpy3"]["soundtheme"])
-		createSoundFiles(self.soundTheme)
+		createSoundFiles(selSoundTheme)
 		loadSoundTheme(selSoundTheme)
 		self.Destroy()
 
