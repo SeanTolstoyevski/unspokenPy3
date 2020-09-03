@@ -14,9 +14,10 @@ import speech
 import ui
 # : 3rd party module
 from .camlorn_audio import *
-from .setting import UnspokenSettingsPanel
+from .setting import UnspokenSettingDialog
 import gui
 from .soundtheme import *
+import wx
 
 AUDIO_WIDTH = 10.0  # Width of the audio display.
 AUDIO_DEPTH = 5.0  # Distance of listener from display.
@@ -34,8 +35,8 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	def __init__(self, *args, **kwargs):
 		super(GlobalPlugin, self).__init__(*args, **kwargs)
-		gui.settingsDialogs.NVDASettingsDialog.categoryClasses.append(
-			UnspokenSettingsPanel)
+		self.unspokenSetting = gui.mainFrame.sysTrayIcon.preferencesMenu.Append(id=wx.ID_ANY, item="unspoken  setting")	
+		gui.mainFrame.sysTrayIcon.Bind(wx.EVT_MENU, self.showSetting, self.unspokenSetting)
 
 		config.conf.spec["unspokenpy3"] = confspec
 
@@ -60,6 +61,12 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 					'role' in kwargs and role in sounds:
 				del kwargs['role']
 		return self._NVDA_getSpeechTextForProperties(reason, *args, **kwargs)
+
+
+	def  showSetting(self, evt):
+		dlg= UnspokenSettingDialog(gui.mainFrame)
+		dlg.ShowModal()
+
 
 	def controlPlayer(self):
 		if self.activeVar == True:
@@ -121,5 +128,3 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	def terminate(self, *args, **kwargs):
 		super().terminate(*args, **kwargs)
-		gui.settingsDialogs.NVDASettingsDialog.categoryClasses.remove(
-			UnspokenSettingsPanel)
