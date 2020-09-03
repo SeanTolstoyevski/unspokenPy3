@@ -37,11 +37,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		super(GlobalPlugin, self).__init__(*args, **kwargs)
 		self.unspokenSetting = gui.mainFrame.sysTrayIcon.preferencesMenu.Append(id=wx.ID_ANY, item="unspoken  setting")	
 		gui.mainFrame.sysTrayIcon.Bind(wx.EVT_MENU, self.showSetting, self.unspokenSetting)
-
 		config.conf.spec["unspokenpy3"] = confspec
-
 		init_camlorn_audio()
+		createSoundFiles(config.conf['unspokenpy3']['soundtheme'])
 		loadSoundTheme(config.conf["unspokenpy3"]["soundtheme"])
+		
 		self._room_reverb = Reverb()
 		self._room_reverb.set_reverb_density(0)
 		self._room_reverb.set_Decay_time(0.4)
@@ -128,3 +128,4 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	def terminate(self, *args, **kwargs):
 		super().terminate(*args, **kwargs)
+		gui.mainFrame.sysTrayIcon.Bind(wx.EVT_MENU, self.showSetting, self.unspokenSetting)

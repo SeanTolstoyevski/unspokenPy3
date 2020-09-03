@@ -4,9 +4,7 @@ import gui
 import wx
 from .soundtheme import *
 from logHandler import log
-from zipfile import ZipFile
-import controlTypes
-windowControlLabels = list(controlTypes.roleLabels.values())
+
 
 class UnspokenSettingDialog(gui.SettingsDialog):
 	title = _(' unspoken  setting')
@@ -32,31 +30,29 @@ class UnspokenSettingDialog(gui.SettingsDialog):
 		selSoundTheme = self.soundThemeSelector.GetStringSelection()
 		config.conf["unspokenpy3"]["soundtheme"] = selSoundTheme
 		log.info("sound theme: " + config.conf["unspokenpy3"]["soundtheme"])
+		createSoundFiles(self.soundTheme)
 		loadSoundTheme(selSoundTheme)
+		self.Destroy()
 
-	def onCustomiseSoundTheme(self, evt):
+	def onCustomiseSoundTheme	(self, evt):
 		dlg = CustomiseSoundThemeDialog(self)
 		dlg.ShowModal()
 
 
 	def onImportTheme(self, evt):
+		importSoundThemePath= None
 		log.info("import button pressed")
 		wildcard = "zip file containing sound theme(*.zip) |*.zip|"
 		dlg = wx.FileDialog(self, wildcard=wildcard, style=wx.FD_CHANGE_DIR |
-							wx.FD_OPEN | wx.FD_FILE_MUST_EXIST, defaultDir=os.getcwd())
+							wx.FD_OPEN | wx.FD_FILE_MUST_EXIST, defaultDir=os.path.expandvars("%userprofile%"))
 		if dlg.ShowModal() == wx.ID_OK:
 			importSoundThemePath = dlg.GetPath()
 		log.info("importing theme" + importSoundThemePath)
 		dlg.Destroy()
-		self.importTheme(importSoundThemePath)
+		importTheme(importSoundThemePath)
 		self.soundThemes = getAvailableSoundThemes()
 		self.soundThemeSelector.SetItems(self.soundThemes)
 		self.soundThemeSelector.SetSelection(self.soundThemeSelector.Count-1)
-
-	def importTheme(self, path):
-		soundThemeFile = ZipFile(path)
-		os.chdir(UNSPOKEN_SOUNDS_PATH)
-		soundThemeFile.extractall()
 
 	def onDeleteTheme(self, evt):
 		log.info("deleting sound theme: " +
@@ -69,23 +65,37 @@ class UnspokenSettingDialog(gui.SettingsDialog):
 
 class CustomiseSoundThemeDialog (gui.SettingsDialog):
 	title = _('customise sound theme  setting ')
+	def __init__(self, parent) -> None:
+		super(CustomiseSoundThemeDialog, self).__init__( parent)
+		self.soundTheme = parent.soundThemeSelector.GetStringSelection()
+		self.filesToCopy = {}
+
+
 
 	def makeSettings(self, settingsSizer):
-		self.windowControlLabel = wx.StaticText(
+		self.controlLabel = wx.StaticText(
 			self, wx.ID_ANY, "window control list")
 		self.controlList = wx.ListBox(
-			self, wx.ID_ANY, choices=list(windowControlLabels))
+			self, wx.ID_ANY, choices= CONTROL_ROLE_NAMES)
 		self.selectAudioBtn = wx.Button(self, wx.ID_ANY, " select wave file ")
 		self.Bind(wx.EVT_BUTTON, self.onSelectAudio,  self.selectAudioBtn)
 
-	def onOk(self):
-		pass
-
+	def onOk(self, evt):
+		log.info ("files copy length: {length}".format (length = len(self.filesToCopy)))
+		for key in self.filesToCopy:
+			log.info("key: {key}".format(key=key))
+			log.info ("   path: {source} theme: {soundTheme}".format(**self.filesToCopy[key]))
+			copySoundFile(key,**self.filesToCopy[key])
+		self.Destroy()
+		
 	def onSelectAudio(self, evt):
+		log.info("sound theme: {st} selected list item: {sl}".format(st=self.soundTheme, sl=self.controlList.GetStringSelection()))
+		selectedRole = self.controlList.GetStringSelection()
 		wildcard = "wave file with mono channel  (.wav) |*.wav|"
 		dlg = wx.FileDialog(self, wildcard=wildcard, style=wx.FD_CHANGE_DIR |
-							wx.FD_OPEN | wx.FD_FILE_MUST_EXIST, defaultDir=os.getcwd())
+							wx.FD_OPEN | wx.FD_FILE_MUST_EXIST, defaultDir=os.path.expandvars("%userprofile%"))
 		if dlg.ShowModal() == wx.ID_OK:
-			importSoundThemePath = dlg.GetPath()
-		log.info("importing theme" + importSoundThemePath)
+			audioPath= dlg.GetPath()
+		self.filesToCopy[selectedRole]={'source': audioPath, 'soundTheme': self.soundTheme}
 		dlg.Destroy()
+		log.info (" path: {source} theme: {soundTheme}".format(**self.filesToCopy[selectedRole]))
