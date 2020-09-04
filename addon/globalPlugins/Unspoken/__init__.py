@@ -3,21 +3,19 @@
 # GitHub: https://github.com/SeanTolstoyevski
 # This project is licensed under the MIT license. You are free to do whatever you want as long as you accept your liability.
 
-import os
 # : NVDA's modules
 import addonHandler
 import config
-import controlTypes
 import globalPluginHandler
 import NVDAObjects
 import speech
 import ui
+import gui
+import wx
 # : 3rd party module
 from .camlorn_audio import *
 from .setting import UnspokenSettingDialog
-import gui
 from .soundtheme import *
-import wx
 
 AUDIO_WIDTH = 10.0  # Width of the audio display.
 AUDIO_DEPTH = 5.0  # Distance of listener from display.
@@ -35,11 +33,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
 	def __init__(self, *args, **kwargs):
 		super(GlobalPlugin, self).__init__(*args, **kwargs)
-		self.unspokenSetting = gui.mainFrame.sysTrayIcon.preferencesMenu.Append(id=wx.ID_ANY, item="unspoken  setting")	
+		self.unspokenSetting = gui.mainFrame.sysTrayIcon.preferencesMenu.Append(
+			id=wx.ID_ANY, item="unspoken  setting")	
 		gui.mainFrame.sysTrayIcon.Bind(wx.EVT_MENU, self.showSetting, self.unspokenSetting)
 		config.conf.spec["unspokenpy3"] = confspec
 		init_camlorn_audio()
-		createSoundFiles(config.conf['unspokenpy3']['soundtheme'])
 		loadSoundTheme(config.conf["unspokenpy3"]["soundtheme"])
 		
 		self._room_reverb = Reverb()

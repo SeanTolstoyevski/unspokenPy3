@@ -2,7 +2,7 @@ import os
 import config
 import gui
 import wx
-from .soundtheme import *
+from .			soundtheme import *
 from logHandler import log
 
 
@@ -23,6 +23,8 @@ class UnspokenSettingDialog(gui.SettingsDialog):
 				  self.customiseSoundThemeBtn)
 		self.importBtn = wx.Button(self, wx.ID_ANY, "import sound theme")
 		self.Bind(wx.EVT_BUTTON, self.onImportTheme,  self.importBtn)
+		self.exportBtn = wx.Button(self, wx.ID_ANY, "export sound theme")
+		self.Bind(wx.EVT_BUTTON, self.onExportSoundTheme,self.exportBtn)
 		self.deleteBtn = wx.Button(self, wx.ID_ANY, "delete sound theme")
 		self.Bind(wx.EVT_BUTTON, self.onDeleteTheme, self.deleteBtn)
 
@@ -30,7 +32,6 @@ class UnspokenSettingDialog(gui.SettingsDialog):
 		selSoundTheme = self.soundThemeSelector.GetStringSelection()
 		config.conf["unspokenpy3"]["soundtheme"] = selSoundTheme
 		log.info("sound theme: " + config.conf["unspokenpy3"]["soundtheme"])
-		createSoundFiles(selSoundTheme)
 		loadSoundTheme(selSoundTheme)
 		self.Destroy()
 
@@ -54,13 +55,24 @@ class UnspokenSettingDialog(gui.SettingsDialog):
 		self.soundThemeSelector.SetItems(self.soundThemes)
 		self.soundThemeSelector.SetSelection(self.soundThemeSelector.Count-1)
 
+	def onExportSoundTheme(self, evt):
+		soundtheme= self.soundThemeSelector.GetStringSelection()
+		exportSoundThemePath= None
+		wildcard = "zip file containing sound theme(*.zip) |*.zip|"
+		dlg = wx.FileDialog(self, wildcard=wildcard, style=wx.FD_CHANGE_DIR |	wx.FD_SAVE, defaultDir=os.path.expandvars("%userprofile%"))
+		if dlg.ShowModal() == wx.ID_OK:
+			exportSoundThemePath = dlg.GetPath()
+		dlg.Destroy()
+		exportSoundTheme(exportSoundThemePath, soundtheme)
+
+
 	def onDeleteTheme(self, evt):
 		log.info("deleting sound theme: " +
 				 self.soundThemeSelector.GetStringSelection())
 		deleteSoundTheme(self.soundThemeSelector.GetStringSelection())
 		self.soundThemeSelector.SetItems(getAvailableSoundThemes())
 		self.soundThemeSelector.SetSelection(self.soundThemeSelector.Count - 1)
-		config.conf["unspokenpy3"]["soundtheme"] = self.soundThemeSelector.GetStringSelection()
+		config.conf ["unspokenpy3"]["soundtheme"]== self.soundThemeSelector.GetStringSelection()
 
 
 class CustomiseSoundThemeDialog (gui.SettingsDialog):
