@@ -13,5 +13,5 @@ install:
 
     pip install markdown
 build_script:
-- cmd: scons
+- cmd: dist.bat
 

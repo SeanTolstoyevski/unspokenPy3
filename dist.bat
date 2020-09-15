@@ -1,1 +1,1 @@
-scons && scons pot
+scons pot && scons
