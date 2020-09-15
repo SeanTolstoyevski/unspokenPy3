@@ -40,12 +40,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		init_camlorn_audio()
 		loadSoundTheme(config.conf["unspokenpy3"]["soundtheme"])
 		
-		self._room_reverb = Reverb()
-		self._room_reverb.set_reverb_density(0)
-		self._room_reverb.set_Decay_time(0.4)
-		self._room_reverb.set_gain(1)
-		self._room_reverb.set_reflections_gain(0.4)
-		self._room_reverb.set_late_reverb_gain(0)
 
 		self._NVDA_getSpeechTextForProperties = speech.getPropertiesSpeech
 		speech.getPropertiesSpeech = self._hook_getSpeechTextForProperties
@@ -64,11 +58,6 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 	def  showSetting(self, evt):
 		dlg= UnspokenSettingDialog(gui.mainFrame)
 		dlg.ShowModal()
-
-
-	def controlPlayer(self):
-		if self.activeVar == True:
-			self.play_object(self)
 
 	def play_object(self, obj):
 		global AUDIO_WIDTH, AUDIO_DEPTH
@@ -93,6 +82,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 			sounds[role].play()
 
 	def event_becomeNavigatorObject(self, obj, nextHandler, isFocus=False):
+		print('Triggered test')
 		if config.conf["unspokenpy3"]["active"]:
 			self.play_object(obj)
 		else:

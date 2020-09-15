@@ -1,6 +1,7 @@
 import os
 import shutil
 from zipfile import ZipFile
+import threading
 import controlTypes
 from .camlorn_audio import Sound3D
 from config import conf
@@ -44,12 +45,10 @@ def createSoundTheme(soundTheme):
 	if not os.path.exists(soundThemePath):
 		os.makedirs(soundThemePath)
 
-
 def deleteSoundTheme(soundTheme):
 	soundThemePath = os.path.join(UNSPOKEN_SOUNDS_PATH, soundTheme)
 	if os.path.exists(soundThemePath):
 		shutil.rmtree(os.path.join(UNSPOKEN_SOUNDS_PATH, soundTheme))
-
 
 def getAvailableSoundThemes():
 	soundThemes = []
@@ -67,7 +66,7 @@ def importTheme(path):
 	if not os.path.exists(soundThemePath):
 		os.makedirs(soundThemePath)
 	os.chdir(soundThemePath)
-	soundThemeFile.extractall()
+	threading.Thread(target=soundThemeFile.extractall).run()
 
 
 def exportSoundTheme(path, soundTheme):
