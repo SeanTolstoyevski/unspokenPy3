@@ -16,21 +16,6 @@ This add-on can help you use your computer dynamic/faster.
 You can assign a different key here And you can create profiles for apps.  
 **Note**: this is a new feature. Testing on more machines may be required. Please consider creating Issue. ( added Date: 31 Aug 2020)
 
-## A few very important note!
-**I am not the main developer of the addon.**
-
-***
-
-This add-on was running before the 2019.3 releases of NVDA.  
-Developer was not developing the addon.
-
-Afterwards, a Sudanese friend named Musharraf Omer built a new add-on by building the Audiothemes addon on Unspoken.  
-Audiothemes have several problems.  
-For example, some sounds crack.
-
-Most of Unspoken is written in C.  
-So it works faster and more stable against pure Python code.  
-Audiothemes react relatively slowly.
 
 **All sources mentioned here**:
 
